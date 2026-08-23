@@ -1,0 +1,75 @@
+name: tibia-7.7
+
+services:
+
+  database:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: otserv
+      MYSQL_USER: otserv
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./files/querymanager/otserv_schema_data.sql:/docker-entrypoint-initdb.d/otserv_schema_data.sql:ro
+    networks:
+      - tibia
+
+  login:
+    build:
+      context: .
+      dockerfile: docker/login/Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "7171:7171"
+    networks:
+      - tibia
+
+  querymanager:
+    build:
+      context: .
+      dockerfile: docker/querymanager/Dockerfile
+    depends_on:
+      - database
+    networks:
+      tibia:
+        ipv4_address: 172.18.0.4
+
+  tibiagame:
+    # https://www.reddit.com/r/docker/comments/huro7n/why_does_nobody_talk_about_the_pid_1_zombie_issue/
+    # O servidor cria processos filhos e apresenta problemas quando executado
+    # diretamente como PID 1 dentro do container.
+    #
+    # Árvore de processos observada no container após habilitar init: true:
+    #
+    # PID 1  /sbin/docker-init -- /game/bin/game
+    # └─ PID 7  /game/bin/game
+    #    └─ PID 8  /game/bin/game
+    #       ├─ PID 9  /game/bin/game
+    #       ├─ PID 10 /game/bin/game
+    #       ├─ PID 11 /game/bin/game
+    #       └─ PID 12 /game/bin/game
+    init: true
+    build:
+      context: .
+      dockerfile: docker/tibiagame/Dockerfile
+    depends_on:
+      - querymanager
+      - login
+    ports:
+      - "7172:7172"
+    networks:
+      - tibia
+
+volumes:
+  mysql_data:
+
+networks:
+  tibia:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

@@ -1,0 +1,37 @@
+--- configOrig.lua	2026-08-15 18:58:21.625196681 -0300
++++ config.lua	2026-08-15 19:04:20.064955005 -0300
+@@ -1,7 +1,7 @@
+ serverName = "Forgotten"
+ 
+ -- Connection Config
+-ip = "127.0.0.1"
++ip = "0.0.0.0"
+ bindOnlyGlobalAddress = false
+ port = 7171
+ statusProtocolPort = 7171
+@@ -13,9 +13,9 @@
+ motdNum = 0
+ 
+ --version
+-clientVersionMin = 772
+-clientVersionMax = 772
+-clientVersionStr = "7.72"
++clientVersionMin = 770
++clientVersionMax = 770
++clientVersionStr = "7.70"
+ 
+ --amounts
+ maxPlayers = 0
+@@ -42,9 +42,9 @@
+ rateSpawn = 1
+ 
+ -- MySQL
+-mysqlHost = "127.0.0.1"
+-mysqlUser = "root"
+-mysqlPass = ""
++mysqlHost = "database"
++mysqlUser = "otserv"
++mysqlPass = "password"
+ mysqlDatabase = "otserv"
+ mysqlPort = 3306
+ mysqlSock = ""

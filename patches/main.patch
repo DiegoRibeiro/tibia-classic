@@ -1,0 +1,100 @@
+--- mainOrig.cpp	2026-08-15 19:30:33.922302202 -0300
++++ main.cpp	2026-08-15 19:32:58.377015807 -0300
+@@ -50,7 +50,7 @@
+ 
+ /* Database Connection */
+ 
+-#define host    "localhost"
++#define host    "database"
+ #define username  "otserv"
+ #define dbpass    "password"
+ #define database  "otserv"
+@@ -63,7 +63,7 @@
+ unsigned short rebootTime  = 6;
+ 
+ void connect_to_db() {
+-Database db("localhost","otserv","password","otserv");
++Database db("database","otserv","password","otserv");
+ Query q(db);
+ }
+ 
+@@ -84,7 +84,7 @@
+ 
+ 	local_adress.sin_family      = AF_INET;
+ 	local_adress.sin_port        = htons(portNumber);
+-	local_adress.sin_addr.s_addr = inet_addr("127.0.0.1");
++	local_adress.sin_addr.s_addr = inet_addr("0.0.0.0"); // @change
+ 
+ 	// first we create a new socket
+ 	SOCKET listen_socket = socket(AF_INET, SOCK_STREAM, 0);
+@@ -1092,7 +1092,7 @@
+ 		std::cout << "Paiduntil: " << dec << paid << endl;
+ 		std::cout << "Unknown: " << dec << unknown << endl;
+ 
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 		q.get_result("SELECT player_id, paid_until FROM houses WHERE house_id = " + int2str(houseID));
+ 		if(q.fetch_row()) {
+@@ -1142,7 +1142,7 @@
+ 		std::cout << "Received deleteHouseOwner packet (0x29)" << std::endl;
+ 		parseDebug(msg);
+ 
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 		unsigned short houseID  = msg.getU16();
+ 		unsigned char unknown = msg.getByte(); // Might be type of eviction
+@@ -1160,7 +1160,7 @@
+ 		std::cout << "Received banishIPAddress Packet (0x1c)" << std::endl;
+ 		parseDebug(msg);
+ 
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 
+ 		unsigned int gmID = msg.getU32();
+@@ -1199,7 +1199,7 @@
+ 	}
+ 	else if(packetId == 0x1e) {
+ 		std::cout << "Received addBuddy packet (0x1e)" << std::endl;
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 		unsigned int accountNumber = msg.getU32();
+ 		unsigned int buddyID = msg.getU32();
+@@ -1227,7 +1227,7 @@
+ 	}
+ 	else if(packetId == 0x1f) {
+ 		std::cout << "Received removeBuddy packet (0x1f)" << std::endl;
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 		unsigned int accountNumber = msg.getU32();
+ 		unsigned int buddyID = msg.getU32();
+@@ -1425,7 +1425,7 @@
+ 		std::cout << "Unknown1: " << dec << unknown << endl;
+ 		std::cout << "Unknown2: " << dec << unknown2 << endl;
+ 
+-		Database db("localhost","otserv","password","otserv");
++		Database db("database","otserv","password","otserv");
+ 		Query q(db);
+ 		q.get_result("SELECT house_id FROM house WHERE bidder_id = " + int2str(bidder));
+ 		if(q.fetch_row()) {
+@@ -1449,11 +1449,11 @@
+ 	writeMsg.addByte(0);          // World Type (0 = normal pvp, 1 = non-pvp, 2 = pvp enforced)
+ 	writeMsg.addByte(rebootTime); // Reboot time (0x09 = 09:00)
+ 
+-	/* IP Address to bind, consider using inet_aton */
+-	writeMsg.addByte(192);
+-	writeMsg.addByte(168);
+-	writeMsg.addByte(8);
+-	writeMsg.addByte(103);
++	/* @change IP Address to bind, consider using inet_aton */
++	writeMsg.addByte(0);
++	writeMsg.addByte(0);
++	writeMsg.addByte(0);
++	writeMsg.addByte(0);
+ 	/* Port we listen to */
+ 	writeMsg.addU16(servPort);
+ 
