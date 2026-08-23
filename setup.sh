@@ -61,7 +61,7 @@ else
     echo "Dennis Libraries já está extraído."
 fi
 
-if [ ! -f "files/tibiagame/game" ]; then
+if [ ! -f "files/tibiagame/ip-address.txt" ]; then
     echo "Extraindo Tibia Game..."
     mkdir -p files/tibiagame
     tar -xzvf "$GAME_FILES" -C files/tibiagame/
