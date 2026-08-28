@@ -1,5 +1,8 @@
 # Tibia Classic
 
+## extrair os arquivos desse link e colocar na pasta files
+https://www.mediafire.com/file/yg73thyiv6iveu0/RealTibia77Files.zip/file
+
 ## Init
 ./start.sh
 
