@@ -65,13 +65,9 @@ https://www.mediafire.com/file/yg73thyiv6iveu0/RealTibia77Files.zip/file
 ## Shutdown
 ./stop.sh
 
+## Client
+https://www.mediafire.com/file/qxm1v4y5y7rul4p/tibia770.exe/file
+
 ## Test character
 191140
 309E6093CAEF
-
-## Limpar o docker
-docker system prune -a
-docker volume prune -a
-
-## Verificar quanto o docker esta utilizado
-docker system df
