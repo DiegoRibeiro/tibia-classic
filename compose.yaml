@@ -53,19 +53,25 @@ services:
     #       ├─ PID 11 /game/bin/game
     #       └─ PID 12 /game/bin/game
     init: true
+    stop_grace_period: 20m
     build:
       context: .
       dockerfile: docker/tibiagame/Dockerfile
     depends_on:
       - querymanager
       - login
+    volumes:
+      - tibiagame_data:/game
     ports:
       - "7172:7172"
     networks:
       - tibia
+    cap_add:
+    - SYS_PTRACE
 
 volumes:
   mysql_data:
+  tibiagame_data:
 
 networks:
   tibia:

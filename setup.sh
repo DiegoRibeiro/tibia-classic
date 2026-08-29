@@ -69,6 +69,9 @@ else
     echo "Tibia Game já está extraído."
 fi
 
+echo "Construindo as imagens Docker..."
+docker compose build
+
 echo
 echo "======================================"
 echo "Setup concluído com sucesso!"

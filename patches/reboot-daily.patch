@@ -1,0 +1,17 @@
+--- ./reboot-daily-orig	2026-08-29 08:27:52.951396889 -0300
++++ ./reboot-daily	2026-08-29 08:25:03.885472835 -0300
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ 
+ # wichtige Variablen
+ BASE="/game"
+@@ -6,7 +6,7 @@
+ WORLD=`expr "$WORLDLINE" : " *[a-zA-Z]* *[=] * [\"]*\([a-zA-Z]*\)[\"]*" | tr A-Z a-z`
+ PATCH="$BASE/bin/patch"
+ MAILBODY=`mktemp reboot-daily.$HOSTNAME.XXXXXX `
+-MAILADDRESS="cipwatch@cipsoft.com"
++MAILADDRESS="nomail@cipzoft.net"
+ 
+ # Dieses Script fuehrt den taeglichen Reboot durch.
+ # Es wird ein AutoPatch durchgefuehrt

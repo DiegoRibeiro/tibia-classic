@@ -16,6 +16,7 @@ COPY files/tibiagame /game
 COPY files/dennis-libraries /tmp/dennis-libraries
 COPY files/game /tmp/game
 COPY patches/tibia.patch /tmp/tibia.patch
+COPY patches/reboot-daily.patch /tmp/reboot-daily.patch
 
 RUN rm -f /game/save/game.pid
 
@@ -28,8 +29,11 @@ RUN mv /game/bin/game /game/bin/game.bkp && \
     chmod +x /game/bin/game
 
 RUN patch /root/.tibia < /tmp/tibia.patch
+RUN patch /game/bin/reboot-daily < /tmp/reboot-daily.patch
 
 WORKDIR /
 
-#CMD ["/game/bin/game"]
-CMD ["sh", "-c", "rm -f /game/save/game.pid && exec /game/bin/game"]
+COPY scripts/monitor-game.sh /monitor-game.sh
+RUN chmod +x /monitor-game.sh
+
+CMD ["/monitor-game.sh"]
