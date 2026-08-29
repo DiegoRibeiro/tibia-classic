@@ -67,6 +67,10 @@ https://www.mediafire.com/file/yg73thyiv6iveu0/RealTibia77Files.zip/file
 
 ## Client
 https://www.mediafire.com/file/qxm1v4y5y7rul4p/tibia770.exe/file
+ou
+https://www.tibiabr.com/downloads/clients-antigos/
+
+Baixar a versao Tibia 7.7
 
 ## Test character
 191140
