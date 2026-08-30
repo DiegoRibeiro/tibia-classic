@@ -59,6 +59,9 @@ https://docs.docker.com/engine/install/ubuntu/
 ## extrair os arquivos desse link e colocar na pasta files
 https://www.mediafire.com/file/yg73thyiv6iveu0/RealTibia77Files.zip/file
 
+## Rodar o setup.sh para validar e extrair os arquivos.
+./setup.sh
+
 ## Init
 ./start.sh
 
