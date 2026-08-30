@@ -21,8 +21,7 @@ clean_extracted() {
 
 clean_all() {
     echo "Limpando todo o conteúdo do diretório files/..."
-    # Remove todo o conteúdo preservando o arquivo oculto .gitkeep
-    find files/ -mindepth 1 ! -name '.gitkeep' -exec rm -rf {} +
+    find files/ -mindepth 1 ! -name '.gitkeep' -delete
     
     rm -f .setup_complete
     echo "Diretório files/ limpo e .setup_complete removido!"
@@ -34,7 +33,8 @@ case "$option" in
         ;;
     2)
         read -p "Tem certeza que deseja apagar os arquivos compactados originais? (s/N): " confirm
-        if [[ "$confirm" =~ ^[S s]$ ]]; then
+        # Converte a resposta para minúscula e checa se começa com 's'
+        if [[ "${confirm,,}" == "s"* ]]; then
             clean_all
         else
             echo "Operação cancelada."
