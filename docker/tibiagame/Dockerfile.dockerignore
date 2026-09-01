@@ -1,0 +1,9 @@
+# 1. Ignora absolutamente tudo na raiz do projeto
+**/*
+
+# 2. Libera APENAS o que o serviço do tibiagame precisa
+!/docker/tibiagame/script
+!/docker/tibiagame/patches
+!/files/game
+!/files/dennis-libraries
+!/files/tibia-game.tarball.tar.gz

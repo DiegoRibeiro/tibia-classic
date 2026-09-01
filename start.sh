@@ -14,7 +14,7 @@ wait_for_port() {
 
     echo "Esperando $service na porta $port..."
 
-    until docker compose exec -T "$service" nc -z localhost "$port" 2>/dev/null; do
+    until docker compose exec -T "$service" bash -c "</dev/tcp/127.0.0.1/$port" 2>/dev/null; do
         sleep 1
     done
 

@@ -108,3 +108,5 @@ Comparar o estado antes e depois para descobrir:
 * uso de shared memory;
 * processos auxiliares;
 * mecanismos de shutdown/restart.
+
+docker compose build --no-cache --progress=plain debug-context
