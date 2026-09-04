@@ -1,4 +1,6 @@
 files/*
 !files/.gitkeep
+data/*
+!data/.gitkeep
 game-*.tgz
 .setup_complete

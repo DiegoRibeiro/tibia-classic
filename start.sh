@@ -21,20 +21,9 @@ wait_for_port() {
     echo "$service OK!"
 }
 
-echo "Subindo banco..."
 docker compose up -d --no-build database
-
 echo "Aguardando MySQL..."
-
-until docker compose exec -T database mysqladmin ping \
-    -h localhost \
-    -u root \
-    -proot \
-    --silent; do
-    sleep 2
-done
-
-echo "Banco pronto!"
+wait_for_port database 3306
 
 docker compose up -d --no-build querymanager
 echo "Aguardando QueryManager..."

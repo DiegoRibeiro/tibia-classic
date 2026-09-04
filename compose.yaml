@@ -61,7 +61,9 @@ services:
       - querymanager
       - login
     volumes:
-      - tibiagame_data:/game
+      - ./data/dat/owners.dat:/game/dat/owners.dat
+      - ./data/map:/game/map
+      - ./data/usr:/game/usr
     ports:
       - "7172:7172"
     networks:
@@ -71,7 +73,6 @@ services:
 
 volumes:
   mysql_data:
-  tibiagame_data:
 
 networks:
   tibia:

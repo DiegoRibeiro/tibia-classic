@@ -6,4 +6,11 @@
 !/docker/tibiagame/patches
 !/files/game
 !/files/dennis-libraries
-!/files/tibia-game.tarball.tar.gz
+!/files/tibiagame/.tibia
+!/files/tibiagame/save
+!/files/tibiagame/npc
+!/files/tibiagame/bin
+!/files/tibiagame/doc
+#!/files/tibiagame/log
+!/files/tibiagame/mon
+!/files/tibiagame/dat
